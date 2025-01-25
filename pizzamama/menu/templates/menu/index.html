@@ -1,0 +1,44 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'menu/style.css' %}">
+    <title>Menu Pizza</title>
+</head>
+<body>
+    <a href="{% url 'main:index' %}">
+        <img id="small_logo" src="{% static  'menu/images/small_logo.png' %}" alt="Pizza Mama Logo">
+    </a>
+    <div id="pizza_container" style="position:absolute;">
+        <div class="menu_title">
+            <h2>Pizzas</h2>
+        </div>
+        <div class="menu_list">
+            {% for p in pizzas %}
+                <div class="menu_item">
+                    <span class="item_name">{{ p.name }}</span>
+                    <span class="item_price">{{ p.price | floatformat:2 }}€</span>
+                    <span class="item_ing">{{ p.ingredients }}</span>
+                    {% if p.vegan %}
+                        <span class="item_vegan">Vegan</span>{% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="pasta_container" style="position:absolute;left:36%;top:10%;">
+        <div class="menu_title">
+            <h2>Pasta</h2>
+        </div>
+        <div class="menu_list">
+            {% for pasta in pastas %}
+                <div class="menu_item">
+                    <span class="item_name">{{ pasta.name }}</span>
+                    <span class="item_price">{{ pasta.price | floatformat:2 }}€</span>
+                    <span class="item_ing">{{ pasta.ingredients }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
